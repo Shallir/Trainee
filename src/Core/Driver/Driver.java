@@ -33,11 +33,11 @@ public class Driver
             starter();
         }
         //Perform Basic Operations
-        driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
         EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
         EventHandler handler = new EventHandler(){};
         eventDriver.register(handler);
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(ConstantVariable.implicitlyWait, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(ConstantVariable.pageLoadTimeout, TimeUnit.SECONDS);
 
