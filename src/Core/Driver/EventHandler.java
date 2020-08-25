@@ -115,6 +115,7 @@ public class EventHandler implements WebDriverEventListener{
     }
 
     public void beforeNavigateTo(String arg0, WebDriver arg1) {
+        System.out.println("Just opening page" + arg0 + arg1);
     }
 
     public void beforeScript(String arg0, WebDriver arg1) {
