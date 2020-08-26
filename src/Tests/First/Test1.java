@@ -1,3 +1,6 @@
+
+
+import Driver.Driver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -10,7 +13,8 @@ public class Test1 {
 
     @Test
     public void RunGoogle() {
-        Driver.driver.navigate().to(LoginPage.GogglePage);
+        Driver.eventDriver.get("https://www.google.com");
+
     }
 
     @AfterClass

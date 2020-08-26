@@ -1,3 +1,5 @@
+package Driver;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -115,7 +117,7 @@ public class EventHandler implements WebDriverEventListener{
     }
 
     public void beforeNavigateTo(String arg0, WebDriver arg1) {
-        System.out.println("Just opening page" + arg0 + arg1);
+        System.out.println("Trying to open page: " + arg0 + " using " + arg1);
     }
 
     public void beforeScript(String arg0, WebDriver arg1) {
@@ -146,5 +148,6 @@ public class EventHandler implements WebDriverEventListener{
         System.out.println("Find happened on " + arg1.toString()
                 + " Using method " + webElement.toString() + "with value " + s);
     }
+
 
 }

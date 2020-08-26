@@ -1,3 +1,5 @@
+package Driver;
+
 public class ConstantVariable
 {
     public static String browserName="Chrome";
