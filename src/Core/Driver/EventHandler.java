@@ -29,8 +29,7 @@ public class EventHandler implements WebDriverEventListener{
 
     public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
         // TODO Auto-generated method stub
-        System.out.println("Find happened on " + arg1.toString()
-                + " Using method " + arg0.toString());
+        System.out.println("Clicked element " + arg0.toString());
     }
 
     public void afterNavigateBack(WebDriver arg0) {
@@ -82,12 +81,16 @@ public class EventHandler implements WebDriverEventListener{
     }
 
     public void beforeFindBy(By arg0, WebElement arg1, WebDriver arg2) {
-        // TODO Auto-generated method stub
-        System.out.println("Just before finding element " + arg1.toString());
 
+        if (arg1 == null) {
+            System.out.println("Locating element: " + arg0.toString());
+
+        } else {
+            System.out.println("Just before finding element: " + arg0.toString() + " inside " + arg1.toString() + " Web element on browser: " + arg2.toString());
+        }
     }
 
-    public void beforeNavigateBack(WebDriver arg0) {
+        public void beforeNavigateBack(WebDriver arg0) {
         // TODO Auto-generated method stub
         System.out.println("Just before beforeNavigateBack " + arg0.getCurrentUrl());
 

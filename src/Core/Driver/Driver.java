@@ -11,7 +11,6 @@ public class Driver
     public static WebDriver driver=null;
     public static EventFiringWebDriver eventDriver=null;
 
-
     private static WebDriver starter(){
         if(ConstantVariable.browserName.equalsIgnoreCase("Chrome"))
         {
@@ -29,6 +28,11 @@ public class Driver
             EventHandler handler = new EventHandler(){};
             eventDriver.register(handler);
         }
+        //Perform Basic Operations
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+        //driver.manage().timeouts().pageLoadTimeout(pageLoadTimeout, TimeUnit.SECONDS); //ожидание загрузки страницы
+        //driver.manage().timeouts().setScriptTimeout(pagescriptstimeout, TimeUnit.SECONDS); //ожидание отработки скриптов
         return driver;
     }
 
@@ -39,7 +43,6 @@ public class Driver
         {
             starter();
         }
-        //Perform Basic Operations
     }
 
     public static void quit()

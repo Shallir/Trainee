@@ -1,6 +1,5 @@
-
-
 import Driver.Driver;
+import PagesMap.LoginPage;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,7 +12,8 @@ public class Test1 {
 
     @Test
     public void RunGoogle() {
-        Driver.eventDriver.get("https://www.google.com");
+        LoginPage.search_page();
+        LoginPage.searchFor("Wiki");
 
     }
 
