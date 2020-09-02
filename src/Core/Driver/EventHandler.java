@@ -16,7 +16,7 @@ public class EventHandler implements WebDriverEventListener{
 
     public void afterClickOn(WebElement arg0, WebDriver arg1) {
         // TODO Auto-generated method stub
-        System.out.println("inside method afterClickOn on " + arg0.toString());
+        System.out.println("Action applied to element  " + arg0.toString());
     }
 
     public void beforeChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
@@ -76,7 +76,7 @@ public class EventHandler implements WebDriverEventListener{
 
     public void beforeClickOn(WebElement arg0, WebDriver arg1) {
         // TODO Auto-generated method stub
-        System.out.println("About to click on the " + arg0.toString());
+        System.out.println("Preparing action for  " + arg0.toString());
 
     }
 
@@ -86,7 +86,8 @@ public class EventHandler implements WebDriverEventListener{
             System.out.println("Locating element: " + arg0.toString());
 
         } else {
-            System.out.println("Just before finding element: " + arg0.toString() + " inside " + arg1.toString() + " Web element on browser: " + arg2.toString());
+            System.out.println("Just before finding element: " + arg0.toString() +
+                    " inside " + arg1.toString() + " Web element on browser: " + arg2.toString());
         }
     }
 

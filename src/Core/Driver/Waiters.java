@@ -1,60 +1,58 @@
 package Driver;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static Driver.ConstantVariable.*;
+import java.util.Arrays;
+import java.util.Collection;
 
-// TODO ожидания, все виды ошибок, принимающие Webelement и By, Возвращать Webdriver Wait
+import static Driver.ConstantVariable.visibilityTimeout;
+
+// TODO ожидания, все виды ошибок, принимающие Webelement и By, Возвращать Webdriver Wait Webdriver exeptions
 // TODO игнорящие Exceptions NoSuchElementException, NullReference, NoSuchElementException ElementNotVisibleException ElementNotSelectableException
 
 public class Waiters {
 
+    private static WebDriverWait wait = new WebDriverWait(Driver.eventDriver, visibilityTimeout);
+    private static Collection ignored_exeptions = Arrays.asList(
+            NoSuchElementException.class,
+            ElementNotVisibleException.class,
+            ElementNotSelectableException.class);
+
     public static WebElement waiting_visibility (WebElement elem) {
-        try {
-            WebDriverWait wait = new WebDriverWait(Driver.eventDriver, visibilityTimeout);
             wait.until(ExpectedConditions.visibilityOf(elem));
-        } catch (NoSuchElementException|ElementNotVisibleException|ElementNotSelectableException ignored) {}
+            wait.ignoreAll(ignored_exeptions);
         return elem;
     }
 
     public static By waiting_visibility  (By elem) {
-        try {
-        WebDriverWait wait = new WebDriverWait (Driver.eventDriver, visibilityTimeout);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elem));
-        } catch (NoSuchElementException|ElementNotVisibleException|ElementNotSelectableException ignored) {}
-        return elem;
+        wait.ignoreAll(ignored_exeptions);
+            return elem;
     }
 
     public static WebElement waiting_selectability (WebElement elem) {
-        try{
-        WebDriverWait wait = new WebDriverWait (Driver.eventDriver, selectabilityTimeout);
-        wait.until(ExpectedConditions.elementToBeSelected(elem));
-        } catch (NoSuchElementException|ElementNotVisibleException|ElementNotSelectableException ignored) {}
+        wait.until(ExpectedConditions.elementToBeClickable(elem));
+        wait.ignoreAll(ignored_exeptions);
         return elem;
     }
 
     public static By waiting_selectability (By elem){
-        try{
-        WebDriverWait wait = new WebDriverWait (Driver.eventDriver, selectabilityTimeout);
-        wait.until(ExpectedConditions.elementToBeSelected(elem));
-        } catch (NoSuchElementException|ElementNotVisibleException|ElementNotSelectableException ignored) {}
+        wait.until(ExpectedConditions.elementToBeClickable(elem));
+        wait.ignoreAll(ignored_exeptions);
         return elem;
     }
 
     public static WebElement waiting_clicability (WebElement elem){
-        try{
-        WebDriverWait wait = new WebDriverWait (Driver.eventDriver, clicabilityTimeout);
-        wait.until(ExpectedConditions.elementToBeSelected(elem));
-        } catch (NoSuchElementException|ElementNotVisibleException|ElementNotSelectableException ignored) {}
+        wait.until(ExpectedConditions.elementToBeClickable(elem));
+        wait.ignoreAll(ignored_exeptions);
         return elem;
     }
 
     public static By waiting_clicability (By elem) {
-        try{
-        WebDriverWait wait = new WebDriverWait (Driver.eventDriver, clicabilityTimeout);
         wait.until(ExpectedConditions.elementToBeSelected(elem));
-        } catch (NoSuchElementException|ElementNotVisibleException|ElementNotSelectableException ignored) {}
+        wait.ignoreAll(ignored_exeptions);
         return elem;
     }
 
