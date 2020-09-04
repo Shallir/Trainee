@@ -26,13 +26,13 @@ public class BaseMethods {
     //Write Text
     public void write_text(By elementLocation, String text) {
         click(elementLocation);
-        Waiters.waiting_selectability(driver.findElement(elementLocation)).sendKeys(text);
+        Waiters.waiting_clicability(driver.findElement(elementLocation)).sendKeys(text);
         driver.findElement(elementLocation).submit();
     }
     public void write_text(WebElement elementLocation, String text) {
-        Waiters.waiting_selectability(elementLocation).click();
-        Waiters.waiting_selectability(elementLocation).sendKeys(text);
-        Waiters.waiting_selectability(elementLocation).submit();
+        Waiters.waiting_clicability(elementLocation).click();
+        Waiters.waiting_clicability(elementLocation).sendKeys(text);
+        Waiters.waiting_clicability(elementLocation).submit();
     }
 
     //Read Text

@@ -9,9 +9,6 @@ import java.util.Collection;
 
 import static Driver.ConstantVariable.visibilityTimeout;
 
-// TODO ожидания, все виды ошибок, принимающие Webelement и By, Возвращать Webdriver Wait Webdriver exeptions
-// TODO игнорящие Exceptions NoSuchElementException, NullReference, NoSuchElementException ElementNotVisibleException ElementNotSelectableException
-
 public class Waiters {
 
     private static  WebDriver driver = Driver.driver_here();
