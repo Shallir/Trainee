@@ -9,8 +9,8 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 public class Driver
 {
 
-    public static WebDriver driver=null;
-    public static EventFiringWebDriver eventDriver=null;
+    private static WebDriver driver=null;
+    private static EventFiringWebDriver eventDriver=null;
 
     private static void handler(){
         eventDriver = new EventFiringWebDriver(driver);
@@ -33,18 +33,18 @@ public class Driver
             handler();
         }
         //Perform Basic Operations
-        eventDriver.manage().window().maximize();
         eventDriver.manage().deleteAllCookies();
-        return driver;
+        return eventDriver;
     }
 
-    public static synchronized void getInstance()
+    public static synchronized WebDriver driver_here()
     {
         //Use Of Singleton and Initilize webDriver
         if(driver == null)
         {
-            starter();
+            driver = starter();
         }
+        return eventDriver;
     }
 
     public static void quit()

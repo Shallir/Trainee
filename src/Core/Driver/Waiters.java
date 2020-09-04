@@ -14,7 +14,8 @@ import static Driver.ConstantVariable.visibilityTimeout;
 
 public class Waiters {
 
-    private static WebDriverWait wait = new WebDriverWait(Driver.eventDriver, visibilityTimeout);
+    private static  WebDriver driver = Driver.driver_here();
+    private static WebDriverWait wait = new WebDriverWait(driver, visibilityTimeout);
     private static Collection ignored_exeptions = Arrays.asList(
             NoSuchElementException.class,
             ElementNotVisibleException.class,
