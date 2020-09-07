@@ -1,19 +1,31 @@
 package Driver;
 
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.aventstack.extentreports.reporter.configuration.Protocol;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class Reports {
-    public static ExtentTest test = null;
-    public static ExtentReports report = null;
+
+    private static ExtentTest test;
+    private static ExtentReports report;
     //mvn allure:serve
 
-    private static ExtentReports starter(){
-        report = new ExtentReports("D:\\Project\\TraineeFramework\\ExtentReports\\ExtentReportResults.html", true);
-        return report;
+    private static void starter(){
+        ExtentSparkReporter spark = new ExtentSparkReporter("ExtentReports/ExtentReportResults.html");
+            spark.config().setTheme(Theme.DARK);
+            spark.config().setDocumentTitle("page title");
+            spark.config().setEncoding("utf-8");
+            spark.config().setProtocol(Protocol.HTTPS);
+            spark.config().setReportName("build name");
+            spark.config().setTheme(Theme.DARK);
+            spark.config().setTimeStampFormat("MMM dd, yyyy HH:mm:ss");
+        report = new ExtentReports();
+        report.attachReporter(spark);
     }
 
-    public static synchronized ExtentReports start_report()
+    public static ExtentReports start_report()
     {
         if(report == null)
         {
@@ -22,17 +34,23 @@ public class Reports {
         return report;
     }
 
-    public static void start_test (String name){
-        test = report.startTest(name);
+    public static ExtentTest start_test()
+    {
+        if(test == null)
+        {
+            report.createTest("Session start");
+        }
+        return test;
     }
 
-    public static void end_test(String name){
-        report.endTest(test);
+    public static void end_test(){
+        if(test != null) {
+            report.removeTest(test);
+        }
     }
 
     public static void end_report()
     {
-        end_test("test");
         report.flush();
     }
 }

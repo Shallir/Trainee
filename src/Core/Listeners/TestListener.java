@@ -1,13 +1,14 @@
 package Listeners;
 
 import Driver.Driver;
-import com.relevantcodes.extentreports.LogStatus;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import Driver.*;
 
 public class TestListener implements ITestListener {
 
@@ -26,8 +27,8 @@ public class TestListener implements ITestListener {
     public void onFinish(ITestContext iTestContext) {
         System.out.println("I am in onFinish method " + iTestContext.getName());
         //Do tier down operations for extentreports reporting!
-        ExtentTestManager.endTest();
-        ExtentManager.getReporter().flush();
+        Reports.start_test();
+        Reports.end_report();
     }
 
     @Override
@@ -39,7 +40,7 @@ public class TestListener implements ITestListener {
     public void onTestSuccess(ITestResult iTestResult) {
         System.out.println("I am in onTestSuccess method " + getTestMethodName(iTestResult) + " succeed");
         //ExtentReports log operation for passed tests.
-        ExtentTestManager.getTest().log(LogStatus.PASS, "Test passed");
+        Reports.start_test().log(Status.PASS, "Test passed");
     }
 
     @Override
@@ -55,15 +56,14 @@ public class TestListener implements ITestListener {
                 getScreenshotAs(OutputType.BASE64);
 
         //ExtentReports log and screenshot operations for failed tests.
-        ExtentTestManager.getTest().log(LogStatus.FAIL, "Test Failed",
-                ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
+        Reports.start_test().log(Status.FAIL, "Test Failed");
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
         System.out.println("I am in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
         //ExtentReports log operation for skipped tests.
-        ExtentTestManager.getTest().log(LogStatus.SKIP, "Test Skipped");
+        Reports.start_test().log(Status.SKIP, "Test Skipped");
     }
 
     @Override

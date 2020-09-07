@@ -1,5 +1,6 @@
 package Driver;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,6 +17,7 @@ public class Driver
         eventDriver = new EventFiringWebDriver(driver);
         EventHandler handler = new EventHandler(){};
         eventDriver.register(handler);
+        PropertyConfigurator.configure("src/resources/log4j.properties");
     };
 
     private static WebDriver starter(){
@@ -49,11 +51,13 @@ public class Driver
 
     public static void quit()
     {
+        Reports.end_report();
         eventDriver.quit();
         eventDriver=null; // we destroy the driver object after quit operation
     }
     public static void close()
     {
+        Reports.end_report();
         eventDriver.close();
         eventDriver=null;  // we destroy the driver object after quit operation
     }

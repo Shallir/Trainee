@@ -1,37 +1,67 @@
 import Driver.Driver;
-import Driver.Reports;
+import Driver.*;
 import Pages.SearchPage;
-import org.apache.log4j.PropertyConfigurator;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import org.testng.annotations.*;
 
-//@Listeners(TestListener.class)
+import static Driver.Reports.end_test;
+import static Driver.Reports.start_test;
+
+
 public class Suite1 {
 
-
-
     private SearchPage Gpage = new SearchPage();
+
+    private static String example_text = "Wiki";
+    private static String example_text_Fail = "NotWiki";
+    private static String example_double = "11.11";
 //
     @BeforeClass
-    public void classLevelSetup() {
-       Reports.start_report();
-       Reports.start_test("First test");
-       String log4jConfPath = "src/resources/log4j.properties";
-       PropertyConfigurator.configure(log4jConfPath);
+    private void classLevelSetup() {
+        Driver.driver_here();
+        Reports.start_report();
+    }
+    @BeforeTest
+    private void s_test(){
+        start_test();
     }
 
-    @Test(description = "Goggle page search")
-    public void GoogleSearch() {
+    @Epic(value = "поиск")
+    @Feature(value = "базовый поиск")
+    @Story(value = "поиск текстовых значений")
+    @Test(description = "Одно слово")
+    public void GoogleSearcTextPass() {
         Gpage.search_page();
-        Gpage.searchFor();
-        Assert.assertEquals(Gpage.page().contains("Wiki"), true);
+        Gpage.searchFor(example_text);
+        Gpage.check_search(example_text);
     }
-//
-    @AfterClass public void teardown() {
+
+    @Epic(value = "поиск")
+    @Feature(value = "базовый поиск")
+    @Story(value = "поиск текстовых значений")
+    @Test(description = "Одно слово негативный")
+    public void GoogleSearchTextFail() {
+        Gpage.search_page();
+        Gpage.searchFor(example_text);
+        Gpage.check_search(example_text_Fail);
+    }
+    @Epic(value = "поиск")
+    @Feature(value = "базовый поиск")
+    @Story(value = "поиск числовых значений")
+    @Test(description = "Число позитивный")
+    public void GoogleSearchNumberPass() {
+        Gpage.search_page();
+        Gpage.searchFor(example_double);
+        Gpage.check_search(example_double);
+    }
+    @AfterTest
+    private void e_test(){
+        end_test();
+    }
+    @AfterClass
+    private void teardown() {
         Driver.quit();
-        Reports.end_test("First test");
-        Reports.end_report();
     }
 }
