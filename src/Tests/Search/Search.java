@@ -9,14 +9,13 @@ import org.testng.annotations.*;
 import static Driver.Reports.end_test;
 import static Driver.Reports.start_test;
 
-
-public class Suite1 {
+public class Search {
 
     private SearchPage Gpage = new SearchPage();
 
-    private static String example_text = "Wiki";
-    private static String example_text_Fail = "NotWiki";
-    private static String example_double = "11.11";
+    private String example_text = "Wiki";
+    private String example_text_Fail = "NotWiki";
+    private String example_double = "11.11";
 //
     @BeforeClass
     private void classLevelSetup() {

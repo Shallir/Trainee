@@ -26,6 +26,7 @@ public class Driver
         {
             System.setProperty("webdriver.chrome.driver", "D:\\Project\\TraineeFramework\\src\\resources\\chromedriver.exe");
             driver= ThreadGuard.protect(new ChromeDriver());
+            driver.manage().window().setSize(ConstantVariable.d);
             handler();
         }
         else if(ConstantVariable.browserName.equalsIgnoreCase("Firefox"))
@@ -41,7 +42,6 @@ public class Driver
 
     public static synchronized WebDriver driver_here()
     {
-        //Use Of Singleton and Initilize webDriver
         if(driver == null)
         {
             driver = starter();

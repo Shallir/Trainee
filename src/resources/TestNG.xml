@@ -8,7 +8,7 @@
 
     <test name="SearchPage">
         <classes>
-            <class name="Suite1"/>
+            <class name="Search"/>
         </classes>
     </test>
 </suite>

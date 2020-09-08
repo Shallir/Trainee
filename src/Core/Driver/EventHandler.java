@@ -29,7 +29,7 @@ public class EventHandler implements WebDriverEventListener{
 
     public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
         // TODO Auto-generated method stub
-        System.out.println("Clicked element " + arg0.toString());
+        System.out.println("Used  element " + arg0.toString());
     }
 
     public void afterNavigateBack(WebDriver arg0) {

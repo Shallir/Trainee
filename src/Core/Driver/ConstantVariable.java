@@ -1,5 +1,7 @@
 package Driver;
 
+import org.openqa.selenium.Dimension;
+
 public class ConstantVariable
 {
     public static String browserName="Chrome";
@@ -10,4 +12,5 @@ public class ConstantVariable
     public static int selectabilityTimeout = 7;
     public static int visibilityTimeout = 7;
     public static String report_dir = "D:\\Project\\TraineeFramework\\ExtentReports\\ExtentReportResults.html";
+    public static Dimension d = new Dimension(1980,1600);
 }

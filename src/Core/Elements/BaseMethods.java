@@ -12,42 +12,55 @@ import org.testng.Assert;
 
 public class BaseMethods {
     private static WebDriver driver = Driver.driver_here();
+    private static Waiters wait = new Waiters();
     ExtentTest test = Reports.start_report().createTest("ExtentReport", "s"); ;
 
+    public void open_page (String url){
+            driver.navigate().to(url);
+    }
+
+    public String getPageName (){
+        String page = driver.getCurrentUrl();
+
+        return page;
+    }
+
+    // Тут трабла
+
     public void click(By elementLocation) {
-        Waiters.waiting_clicability(driver.findElement(elementLocation)).click();
+        driver.findElement(wait.clicability(elementLocation)).click();
         test.log(Status.INFO  , "Click specified element:  "+ elementLocation.toString());
     }
 
     public void click(WebElement elementLocation) {
-        Waiters.waiting_clicability(elementLocation).click();
+        wait.clicability(elementLocation).click();
         test.log(Status.INFO, "Click specified element:  "+ elementLocation.toString());
     }
 
     //Write Text
     public void write_text(By elementLocation, String text) {
         click(elementLocation);
-        Waiters.waiting_clicability(driver.findElement(elementLocation)).sendKeys(text);
+        driver.findElement(wait.clicability(elementLocation)).sendKeys(text);
         driver.findElement(elementLocation).submit();
         test.log(Status.INFO, "In the field: "+ elementLocation.toString() +" searching for: " + text);
     }
 
     public void write_text(WebElement elementLocation, String text) {
-        click(elementLocation);
-        Waiters.waiting_clicability(elementLocation).sendKeys(text);
+        click(wait.clicability(elementLocation));
+        wait.clicability(elementLocation).sendKeys(text);
         elementLocation.submit();
         test.log(Status.INFO, "In the field: "+ elementLocation.toString() +" searching for: " + text);
     }
 
     //Read Text
     public String readText(By elementLocation) {
-        String text = Waiters.waiting_clicability(driver.findElement(elementLocation)).getText();
+        String text =  driver.findElement(wait.clicability(elementLocation)).getText();
         test.log(Status.INFO, "From the field: "+ elementLocation.toString() +" read text: " + text);
         return text;
     }
 
     public String readText(WebElement elementLocation) {
-        String text = Waiters.waiting_clicability(elementLocation).getText();
+        String text = wait.clicability(elementLocation).getText();
         test.log(Status.INFO, "From the field: "+ elementLocation.toString() +" read text: " + text);
         return text;
     }
