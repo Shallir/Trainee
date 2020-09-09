@@ -22,6 +22,17 @@ public class Waiters {
         return elem;
     }
 
+    public By mass_visibility  (By elem) {
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elem));
+        wait.ignoreAll(ignored_exeptions);
+        return elem;
+    }
+    public WebElement mass_visibility (WebElement elem) {
+        wait.until(ExpectedConditions.visibilityOfAllElements(elem));
+        wait.ignoreAll(ignored_exeptions);
+        return elem;
+    }
+
     public By visibility  (By elem) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(elem));
         wait.ignoreAll(ignored_exeptions);
