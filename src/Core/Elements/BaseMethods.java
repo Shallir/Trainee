@@ -127,6 +127,10 @@ public class BaseMethods {
         test.log(Status.INFO, "Click specified element:  "+ elementLocation.toString());
     }
 
+    public void scroll_down_to (By elementLocation) {
+        driver.findElement(elementLocation).getLocation();
+    }
+
     //Write Text
     public void write_text(By elementLocation, String text) {
         click(elementLocation);
@@ -155,6 +159,11 @@ public class BaseMethods {
         test.log(Status.INFO, "From the field: "+ elementLocation.toString() +" read text: " + text);
         return text;
     }
+    public boolean is_visible (By elementLocation) {
+        boolean value = driver.findElement(elementLocation).isDisplayed();
+        test.log(Status.INFO, "object is shown: " + elementLocation);
+        return value;
+    }
 
     public void assertion (boolean val1, boolean val2){
         if (val1 != val2)
@@ -165,6 +174,28 @@ public class BaseMethods {
         else {
             test.log(Status.PASS, "Cодержит искомоe значениe");
             Assert.assertEquals(val1, val2, "Cодержит искомоe значениe");
+        }
+    }
+    public void assertion (String val1, String val2){
+        if (val1 != val2)
+        {
+            test.log(Status.FAIL, "Не содержит искомого значения");
+            Assert.assertEquals(val1, val2, "Не содержит искомого значения");
+        }
+        else {
+            test.log(Status.PASS, "Cодержит искомоe значениe");
+            Assert.assertEquals(val1, val2, "Cодержит искомоe значениe");
+        }
+    }
+    public void assertion (int val1, int val2){
+        if (val1 != val2)
+        {
+            test.log(Status.FAIL, "Не равны");
+            Assert.assertEquals(val1, val2, "Не равны");
+        }
+        else {
+            test.log(Status.PASS, "равны");
+            Assert.assertEquals(val1, val2, "равны");
         }
     }
 
