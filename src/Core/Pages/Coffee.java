@@ -62,7 +62,6 @@ public class Coffee {
     private By slider_block = By.xpath("//div[contains(@class, 'ms-view ms-basic-view ms-grab-cursor')]");
     private String logo = "https://pokofemanim.ru/wp-content/themes/darkfire13/images/logo.png";
     private By footer = By.xpath("//div[contains(@class, 'copy')]");
-    private By slide_up_button = By.xpath("//footer//div[contains(@id, 'up')]");
     private String created_file = "D:\\Project\\TraineeFramework\\src\\resources\\coffee_files\\logo2.png";
     private String sample_logo = "D:\\Project\\TraineeFramework\\src\\resources\\coffee_files\\logo.png";
     private String sample_footer = "© 2020 Сайт о кофе: рецепты, выбор посуды, кофеварок и кофемашин.";
@@ -232,11 +231,5 @@ public class Coffee {
     @Step("Nearest future")
     public void next_future(){actions.click(next_future);}
 
-    @Step("Check results count")
-    public void check_results  (){
-        int result = actions.elem_list(result_set).size();
-        System.out.println(result);
-        actions.assertion(result==9,true);
-    }
 
 }

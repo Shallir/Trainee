@@ -253,6 +253,7 @@ public class Coffee {
     public void Receipts_1() {
         basePage.open_base_page();
         basePage.receipts();
+        basePage.receipts();
         basePage.receipts_1();
         basePage.check_search("kofe_po");
     }
@@ -448,7 +449,6 @@ public class Coffee {
         basePage.open_base_page();
         basePage.assertion_footer_text();
     }
-
 
     @AfterTest
     private void e_test(){

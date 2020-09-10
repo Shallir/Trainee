@@ -1,14 +1,12 @@
 package Listeners;
 
-import Driver.Driver;
+import Driver.*;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
-import Driver.*;
+import org.testng.*;
+
 
 public class TestListener implements ITestListener {
 
