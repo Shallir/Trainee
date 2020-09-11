@@ -9,18 +9,14 @@ import java.util.Collection;
 
 import static Driver.ConstantVariable.visibilityTimeout;
 
+
 public class Waiters {
+    private static WebDriver driver = Driver.driver_here();
     private static WebDriverWait wait = new WebDriverWait(Driver.driver_here(), visibilityTimeout);
     private static Collection ignored_exeptions = Arrays.asList(
             NoSuchElementException.class,
             ElementNotVisibleException.class,
             ElementNotSelectableException.class);
-
-    public WebElement visibility (WebElement elem) {
-        wait.until(ExpectedConditions.visibilityOf(elem));
-        wait.ignoreAll(ignored_exeptions);
-        return elem;
-    }
 
     public By mass_visibility  (By elem) {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elem));
@@ -39,6 +35,11 @@ public class Waiters {
         return elem;
     }
 
+    public WebElement visibility (WebElement elem) {
+        wait.until(ExpectedConditions.visibilityOf(elem));
+        wait.ignoreAll(ignored_exeptions);
+        return elem;
+    }
     public WebElement waiting_selectability (WebElement elem) {
         wait.until(ExpectedConditions.elementToBeSelected(elem));
         wait.ignoreAll(ignored_exeptions);
@@ -57,10 +58,11 @@ public class Waiters {
         return elem;
     }
 
-    public By clicability (By elem) {
+    public WebElement clicability (By elem) {
         wait.until(ExpectedConditions.elementToBeClickable(elem));
         wait.ignoreAll(ignored_exeptions);
-        return elem;
+        WebElement new_elem = driver.findElement(elem);
+        return new_elem;
     }
 
     //other waiters

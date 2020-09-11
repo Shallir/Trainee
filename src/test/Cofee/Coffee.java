@@ -1,17 +1,21 @@
 import Driver.Driver;
 import Driver.Reports;
+import Elements.BaseMethods;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import static Driver.Reports.end_test;
 import static Driver.Reports.start_test;
+import static Pages.Coffee.*;
+import static org.testng.Assert.assertEquals;
 
 public class Coffee {
 
     private Pages.Coffee basePage = new Pages.Coffee();
-
+    private BaseMethods actions =new BaseMethods();
     private String search_for_1 = "Кофе с медом";
 
     //
@@ -33,7 +37,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.searchFor(search_for_1);
         basePage.with_honey_and_strawberry();
-        basePage.check_search("kofe-s-medom-i-malinoy");
+        Assert.assertTrue("kofe-s-medom-i-malinoy".contains(actions.getPageName()));
     }
 
     @Epic(value = "Кофе")
@@ -43,7 +47,7 @@ public class Coffee {
     public void All_articles() {
         basePage.open_base_page();
         basePage.all_about();
-        basePage.check_search("recipes-new");
+        Assert.assertTrue(actions.getPageName().contains("recipes-new"));
     }
 
     @Epic(value = "Кофе")
@@ -53,7 +57,7 @@ public class Coffee {
     public void Health() {
         basePage.open_base_page();
         basePage.health();
-        basePage.check_search("zdorovie");
+        Assert.assertTrue(actions.getPageName().contains("zdorovie"));
     }
 
     @Epic(value = "Кофе")
@@ -63,7 +67,7 @@ public class Coffee {
     public void Diet() {
         basePage.open_base_page();
         basePage.diet();
-        basePage.check_search("kofe_dlya_pohudeniya");
+        Assert.assertTrue(actions.getPageName().contains("kofe_dlya_pohudeniya"));
     }
 
     @Epic(value = "Кофе")
@@ -73,7 +77,7 @@ public class Coffee {
     public void BlackAndWhite() {
         basePage.open_base_page();
         basePage.good_or_bad();
-        basePage.check_search("polqza_i_vred_kofe");
+        Assert.assertTrue(actions.getPageName().contains("polqza_i_vred_kofe"));
     }
 
     @Epic(value = "Кофе")
@@ -83,7 +87,7 @@ public class Coffee {
     public void Cosmeto() {
         basePage.open_base_page();
         basePage.cosmo();
-        basePage.check_search("cosmetologia");
+        Assert.assertTrue(actions.getPageName().contains("cosmetologia"));
     }
 
     @Epic(value = "Кофе")
@@ -93,7 +97,7 @@ public class Coffee {
     public void For_body() {
         basePage.open_base_page();
         basePage.body_and_other();
-        basePage.check_search("kofe_dlya_tela_lica_volos");
+        Assert.assertTrue(actions.getPageName().contains("kofe_dlya_tela_lica_volos"));
     }
 
     @Epic(value = "Кофе")
@@ -103,7 +107,7 @@ public class Coffee {
     public void First_drop_down() {
         basePage.open_base_page();
         basePage.first_menu();
-        basePage.first_menu_verification();
+        assertEquals(actions.elem_list(main_first_list).size(),12);
     }
 
     @Epic(value = "Кофе")
@@ -114,7 +118,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_1();
-        basePage.check_search("drugaya_poleznaya_tehnika_dlya_kofe");
+        Assert.assertTrue(actions.getPageName().contains("drugaya_poleznaya_tehnika_dlya_kofe"));
     }
 
     @Epic(value = "Кофе")
@@ -125,7 +129,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_2();
-        basePage.check_search("gejzernyee_kofevarki");
+        Assert.assertTrue(actions.getPageName().contains("gejzernyee_kofevarki"));
     }
 
     @Epic(value = "Кофе")
@@ -136,7 +140,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_3();
-        basePage.check_search("kapelqnyee_kofevarki");
+        Assert.assertTrue(actions.getPageName().contains("kapelqnyee_kofevarki"));
     }
     @Epic(value = "Кофе")
     @Feature(value = "Верхнее меню")
@@ -146,7 +150,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_4();
-        basePage.check_search("kapsulqnyee_kofevarki");
+        Assert.assertTrue(actions.getPageName().contains("kapsulqnyee_kofevarki"));
     }
 
     @Epic(value = "Кофе")
@@ -157,7 +161,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_5();
-        basePage.check_search("kofevarki_yespresso");
+        Assert.assertTrue(actions.getPageName().contains("kofevarki_yespresso"));
     }
 
     @Epic(value = "Кофе")
@@ -168,7 +172,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_6();
-        basePage.check_search("kofemashiny_dlya_doma");
+        assertEquals(actions.getPageName().contains("kofemashiny_dlya_doma"), true);
     }
 
     @Epic(value = "Кофе")
@@ -179,7 +183,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_7();
-        basePage.check_search("poleznyj_kofejnyj_inventarq");
+        Assert.assertTrue(actions.getPageName().contains("poleznyj_kofejnyj_inventarq"));
     }
 
     @Epic(value = "Кофе")
@@ -190,7 +194,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_8();
-        basePage.check_search("posuda_dlya_kofe");
+        Assert.assertTrue(actions.getPageName().contains("posuda_dlya_kofe"));
     }
     @Epic(value = "Кофе")
     @Feature(value = "Верхнее меню")
@@ -200,7 +204,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_9();
-        basePage.check_search("ruchnyee_kofemolki");
+        assertEquals(actions.getPageName().contains("ruchnyee_kofemolki"), true);
     }
 
     @Epic(value = "Кофе")
@@ -211,7 +215,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_10();
-        basePage.check_search("sravnenie_posudy_i_tehniki_dlya_kofe");
+        Assert.assertTrue(actions.getPageName().contains("sravnenie_posudy_i_tehniki_dlya_kofe"));
     }
 
     @Epic(value = "Кофе")
@@ -222,7 +226,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_11();
-        basePage.check_search("turki_dlya_kofe");
+        Assert.assertTrue(actions.getPageName().contains("turki_dlya_kofe"));
     }
 
     @Epic(value = "Кофе")
@@ -233,7 +237,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.first_menu();
         basePage.first_menu_12();
-        basePage.check_search("yelektricheskie_kofemolki");
+        assertEquals(actions.getPageName().contains("yelektricheskie_kofemolki"), true);
     }
 
     @Epic(value = "Кофе")
@@ -243,7 +247,7 @@ public class Coffee {
     public void Receipts_drop_down() {
         basePage.open_base_page();
         basePage.receipts();
-        basePage.receipts_verification();
+        assertEquals(actions.elem_list(main_receipts_list).size(),11);
     }
 
     @Epic(value = "Кофе")
@@ -255,7 +259,7 @@ public class Coffee {
         basePage.receipts();
         basePage.receipts();
         basePage.receipts_1();
-        basePage.check_search("kofe_po");
+        Assert.assertTrue(actions.getPageName().contains("kofe_po"));
     }
 
     @Epic(value = "Кофе")
@@ -266,7 +270,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_2();
-        basePage.check_search("kofe_s_alkogolem");
+        Assert.assertTrue(actions.getPageName().contains("kofe_s_alkogolem"));
     }
 
     @Epic(value = "Кофе")
@@ -277,7 +281,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_3();
-        basePage.check_search("kofe_s_kakao_shokoladom");
+        Assert.assertTrue(actions.getPageName().contains("kofe_s_kakao_shokoladom"));
     }
 
     @Epic(value = "Кофе")
@@ -288,7 +292,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_4();
-        basePage.check_search("kofe_s_medom");
+        Assert.assertTrue(actions.getPageName().contains("kofe_s_medom"));
     }
 
     @Epic(value = "Кофе")
@@ -299,7 +303,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_5();
-        basePage.check_search("kofe_s_molokom_i_molochnymi_produktami");
+        Assert.assertTrue(actions.getPageName().contains("kofe_s_molokom_i_molochnymi_produktami"));
     }
 
     @Epic(value = "Кофе")
@@ -310,7 +314,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_6();
-        basePage.check_search("kofe_so_speciyami");
+        Assert.assertTrue(actions.getPageName().contains("kofe_so_speciyami"));
     }
 
     @Epic(value = "Кофе")
@@ -321,7 +325,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_7();
-        basePage.check_search("na_osnove_rastvorimogo_kofe");
+        Assert.assertTrue(actions.getPageName().contains("na_osnove_rastvorimogo_kofe"));
     }
 
     @Epic(value = "Кофе")
@@ -332,7 +336,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_8();
-        basePage.check_search("recepty_kofe_v_turke");
+        Assert.assertTrue(actions.getPageName().contains("recepty_kofe_v_turke"));
     }
 
     @Epic(value = "Кофе")
@@ -343,7 +347,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_9();
-        basePage.check_search("recepty_s_kofe");
+        Assert.assertTrue(actions.getPageName().contains("recepty_s_kofe"));
     }
 
     @Epic(value = "Кофе")
@@ -354,7 +358,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_10();
-        basePage.check_search("holodnyj_kofe");
+        Assert.assertTrue(actions.getPageName().contains("holodnyj_kofe"));
     }
 
     @Epic(value = "Кофе")
@@ -365,7 +369,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.receipts();
         basePage.receipts_11();
-        basePage.check_search("ostalqnyee_recepty_kofe");
+        Assert.assertTrue(actions.getPageName().contains("ostalqnyee_recepty_kofe"));
     }
 
     @Epic(value = "Кофе")
@@ -375,7 +379,7 @@ public class Coffee {
     public void Twits_drop_down() {
         basePage.open_base_page();
         basePage.twits();
-        basePage.twits_verification();
+        assertEquals(actions.elem_list(main_twits_list).size(),6);
     }
 
     @Epic(value = "Кофе")
@@ -385,7 +389,7 @@ public class Coffee {
     public void Health_drop_down() {
         basePage.open_base_page();
         basePage.top_health();
-        basePage.health_verification();
+        assertEquals(actions.elem_list(healht_list).size(),2);;
     }
 
     @Epic(value = "Кофе")
@@ -396,7 +400,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.cosmetics();
         basePage.cosmetics_body_and_hair();
-        basePage.check_search("kofe_dlya_tela_lica_volos");
+        Assert.assertTrue(actions.getPageName().contains("kofe_dlya_tela_lica_volos"));
     }
 
 
@@ -408,7 +412,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.top_menu_future();
         basePage.nearest_future();
-        basePage.check_search("gadanie_na_kofejnoj_guwe");
+        Assert.assertTrue(actions.getPageName().contains("gadanie_na_kofejnoj_guwe"));
     }
 
     @Epic(value = "Кофе")
@@ -419,7 +423,7 @@ public class Coffee {
         basePage.open_base_page();
         basePage.top_menu_future();
         basePage.next_future();
-        basePage.check_search("gadanie_na_kofejnoj_guwe");
+        Assert.assertTrue(actions.getPageName().contains("gadanie_na_kofejnoj_guwe"));
     }
 
     @Epic(value = "Кофе")
@@ -428,7 +432,8 @@ public class Coffee {
     @Test(description = "размер")
     public void Slider_size() {
         basePage.open_base_page();
-        basePage.slider_list_dimensions();
+        assertEquals(actions.get_width(slider_block), 1000);
+        assertEquals(actions.get_height(slider_block), 480);
     }
 
     @Epic(value = "Кофе")
@@ -447,7 +452,7 @@ public class Coffee {
     @Test(description = "Футер")
     public void Footer() {
         basePage.open_base_page();
-        basePage.assertion_footer_text();
+        assertEquals(actions.readText(footer), sample_footer);
     }
 
     @AfterTest

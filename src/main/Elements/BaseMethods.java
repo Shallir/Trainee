@@ -30,19 +30,6 @@ public class BaseMethods {
         return list;
     }
 
-    public void list_object_verification (By elements_list, By elem){
-        List <WebElement> list = driver.findElements(wait.mass_visibility(elements_list));
-        if (list.contains(elem))
-        {
-            test.log(Status.FAIL, "Файлы не одинаковы");
-            Assert.assertEquals(list.contains(elem), true, "объекта " + elem + " нет");
-        }
-        else {
-            test.log(Status.PASS, "Файлы одинаковы");
-            Assert.assertEquals(list.contains(elem), true, "объект " + elem + " есть");
-        }
-    }
-
     public void open_page (String url){
             driver.navigate().to(url);
     }
@@ -118,7 +105,7 @@ public class BaseMethods {
     }
 
     public void click(By elementLocation) {
-        driver.findElement(wait.clicability(elementLocation)).click();
+        wait.clicability(elementLocation).click();
         test.log(Status.INFO  , "Click specified element:  "+ elementLocation.toString());
     }
 
@@ -134,22 +121,22 @@ public class BaseMethods {
     //Write Text
     public void write_text(By elementLocation, String text) {
         click(elementLocation);
-        driver.findElement(wait.clicability(elementLocation)).sendKeys(text);
-        driver.findElement(elementLocation).submit();
+        wait.clicability(elementLocation).sendKeys(text);
+        wait.clicability(elementLocation).submit();
         test.log(Status.INFO, "In the field: "+ elementLocation.toString() +" searching for: " + text);
     }
 
     public void write_text(WebElement elementLocation, String text) {
         click(wait.clicability(elementLocation));
         wait.clicability(elementLocation).sendKeys(text);
-        elementLocation.submit();
+        wait.clicability(elementLocation).submit();
         test.log(Status.INFO, "In the field: "+ elementLocation.toString() +" searching for: " + text);
     }
 
 
     //Read Text
     public String readText(By elementLocation) {
-        String text =  driver.findElement(wait.clicability(elementLocation)).getText();
+        String text =  wait.clicability(elementLocation).getText();
         test.log(Status.INFO, "From the field: "+ elementLocation.toString() +" read text: " + text);
         return text;
     }
@@ -164,39 +151,11 @@ public class BaseMethods {
         test.log(Status.INFO, "object is shown: " + elementLocation);
         return value;
     }
-
-    public void assertion (boolean val1, boolean val2){
-        if (val1 != val2)
-        {
-            test.log(Status.FAIL, "Не содержит искомого значения");
-            Assert.assertEquals(val1, val2, "Не содержит искомого значения");
-        }
-        else {
-            test.log(Status.PASS, "Cодержит искомоe значениe");
-            Assert.assertEquals(val1, val2, "Cодержит искомоe значениe");
-        }
+    public void fail(){
+        test.log(Status.FAIL, "Fail");
     }
-    public void assertion (String val1, String val2){
-        if (val1 != val2)
-        {
-            test.log(Status.FAIL, "Не содержит искомого значения");
-            Assert.assertEquals(val1, val2, "Не содержит искомого значения");
-        }
-        else {
-            test.log(Status.PASS, "Cодержит искомоe значениe");
-            Assert.assertEquals(val1, val2, "Cодержит искомоe значениe");
-        }
-    }
-    public void assertion (int val1, int val2){
-        if (val1 != val2)
-        {
-            test.log(Status.FAIL, "Не равны");
-            Assert.assertEquals(val1, val2, "Не равны");
-        }
-        else {
-            test.log(Status.PASS, "равны");
-            Assert.assertEquals(val1, val2, "равны");
-        }
+    public void pass(){
+        test.log(Status.PASS, "Pass");
     }
 
 

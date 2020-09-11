@@ -26,11 +26,4 @@ public class SearchPage {
             actions.write_text(driver.findElement(search_field), value);
         }
 
-        @Step("Verity search")
-            public void check_search (String value){
-            String page = driver.getCurrentUrl();
-            //Assert.assertEquals(page.contains(value), true, "Страница не содержит искомого значения " + value);
-            actions.assertion(page.contains(value), true);
-        }
-
 }

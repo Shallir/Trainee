@@ -53,18 +53,18 @@ public class Coffee {
     private By receipts_11 = By.xpath("//li[contains(@id, 'menu-item-47')]//a");
     private By twits = By.xpath("//li[contains(@id, 'menu-item-51')]");
 
-    private By main_first_list = By.xpath("//li[contains(@id, 'menu-item-25')]//li[contains(@class, 'menu-item')]");
-    private By main_receipts_list = By.xpath("//li[contains(@id, 'menu-item-38')]//li[contains(@class, 'menu-item')]");
-    private By main_twits_list = By.xpath("//li[contains(@id, 'menu-item-51')]//li[contains(@class, 'menu-item')]");
-    private By healht_list = By.xpath("//li[contains(@id, 'menu-item-12211')]//li[contains(@class, 'menu-item')]");
+    public static By main_first_list = By.xpath("//li[contains(@id, 'menu-item-25')]//li[contains(@class, 'menu-item')]");
+    public static By main_receipts_list = By.xpath("//li[contains(@id, 'menu-item-38')]//li[contains(@class, 'menu-item')]");
+    public static By main_twits_list = By.xpath("//li[contains(@id, 'menu-item-51')]//li[contains(@class, 'menu-item')]");
+    public static By healht_list = By.xpath("//li[contains(@id, 'menu-item-12211')]//li[contains(@class, 'menu-item')]");
     private By cosmetics = By.xpath("//li[contains(@id, 'menu-item-12212')]");
     private By cosmetics_body_and_hair = By.xpath("//li[contains(@id, 'menu-item-57')]");
-    private By slider_block = By.xpath("//div[contains(@class, 'ms-view ms-basic-view ms-grab-cursor')]");
+    public static  By slider_block = By.xpath("//div[contains(@class, 'ms-view ms-basic-view ms-grab-cursor')]");
     private String logo = "https://pokofemanim.ru/wp-content/themes/darkfire13/images/logo.png";
-    private By footer = By.xpath("//div[contains(@class, 'copy')]");
+    public static By footer = By.xpath("//div[contains(@class, 'copy')]");
     private String created_file = "D:\\Project\\TraineeFramework\\src\\resources\\coffee_files\\logo2.png";
     private String sample_logo = "D:\\Project\\TraineeFramework\\src\\resources\\coffee_files\\logo.png";
-    private String sample_footer = "© 2020 Сайт о кофе: рецепты, выбор посуды, кофеварок и кофемашин.";
+    public static String sample_footer = "© 2020 Сайт о кофе: рецепты, выбор посуды, кофеварок и кофемашин.";
     //    private By  = By.xpath("");
 
     @Step("Access site")
@@ -72,15 +72,6 @@ public class Coffee {
 
     @Step("Use search to find text")
     public void searchFor(String value) {actions.write_text(search_field,value);}
-
-    @Step("Verity search target")
-    public void check_search (String value){actions.assertion(actions.getPageName().contains(value), true);}
-
-    @Step("Verify footer text")
-    public void assertion_footer_text(){actions.assertion(actions.readText(footer), sample_footer );}
-
-    @Step("Verify count")
-    public void assertion_count(){actions.assertion(actions.readText(footer), sample_footer );}
 
     @Step("All articles")
     public void all_about (){actions.click(all_about);}
@@ -196,18 +187,6 @@ public class Coffee {
     @Step("Hover twits")
     public void twits(){actions.hover(twits);}
 
-    @Step("First menu size")
-    public void first_menu_verification(){actions.assertion(actions.elem_list(main_first_list).size(),12);}
-
-    @Step("First menu size")
-    public void receipts_verification(){actions.assertion(actions.elem_list(main_receipts_list).size(),11);}
-
-    @Step("First menu size")
-    public void health_verification(){actions.assertion(actions.elem_list(healht_list).size(),2);}
-
-    @Step("Twits menu size")
-    public void twits_verification(){actions.assertion(actions.elem_list(main_twits_list).size(),6);}
-
     @Step("Hover cosmetics menu")
     public void cosmetics(){actions.hover(cosmetics);}
 
@@ -220,13 +199,6 @@ public class Coffee {
     @Step("Compare Logo")
     public void compare_logo(){actions.compare_files(created_file,sample_logo);}
 
-    @Step("Slider list size")
-    public void slider_list_dimensions(){
-        int width = actions.get_width(slider_block);
-        int height = actions.get_height(slider_block);
-        actions.assertion(width==1000,true);
-        actions.assertion(height==480,true);
-    }
 
     @Step("Nearest future")
     public void next_future(){actions.click(next_future);}

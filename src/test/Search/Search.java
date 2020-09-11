@@ -1,9 +1,11 @@
 import Driver.Driver;
 import Driver.*;
+import Elements.BaseMethods;
 import Pages.SearchPage;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import static Driver.Reports.end_test;
@@ -12,6 +14,7 @@ import static Driver.Reports.start_test;
 public class Search {
 
     private SearchPage Gpage = new SearchPage();
+    private BaseMethods actions =new BaseMethods();
 
     private String example_text = "Wiki";
     private String example_text_Fail = "NotWiki";
@@ -34,7 +37,7 @@ public class Search {
     public void GoogleSearcTextPass() {
         Gpage.search_page();
         Gpage.searchFor(example_text);
-        Gpage.check_search(example_text);
+        Assert.assertEquals(actions.getPageName().contains(example_text),true);
     }
 
     @Epic(value = "поиск")
@@ -44,7 +47,7 @@ public class Search {
     public void GoogleSearchTextFail() {
         Gpage.search_page();
         Gpage.searchFor(example_text);
-        Gpage.check_search(example_text_Fail);
+        Assert.assertEquals(actions.getPageName().contains(example_text_Fail),true);
     }
     @Epic(value = "поиск")
     @Feature(value = "базовый поиск")
@@ -53,7 +56,7 @@ public class Search {
     public void GoogleSearchNumberPass() {
         Gpage.search_page();
         Gpage.searchFor(example_double);
-        Gpage.check_search(example_double);
+        Assert.assertEquals(actions.getPageName().contains(example_double),true);
     }
     @AfterTest
     private void e_test(){
