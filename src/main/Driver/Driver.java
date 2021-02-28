@@ -18,7 +18,7 @@ public class Driver
         EventHandler handler = new EventHandler(){};
         eventDriver.register(handler);
         PropertyConfigurator.configure("src/resources/log4j.properties");
-    };
+    }
 
     private static WebDriver starter(){
 
